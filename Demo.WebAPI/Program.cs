@@ -17,15 +17,7 @@ app.UseExceptionHandler(a => a.Run(async (context) => await context.Response
     error = context.Features.Get<IExceptionHandlerPathFeature>().Error.Message
 })));
 
-app.UseSwagger();
-app.UseSwaggerUI(c =>
-{
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Demp API - v1");
-    c.OAuthClientId(builder.Configuration["AzureAd:ClientId"]);
-    c.OAuthUseBasicAuthenticationWithAccessCodeGrant();
-    if (!builder.Environment.IsDevelopment())
-        c.RoutePrefix = String.Empty;
-});
+
 app.UseCors("default");
 //app.UseMiddleware<ErrorHandlerMiddleware>();
 
@@ -33,7 +25,14 @@ app.UseCors("default");
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Demp API - v1");
+        c.OAuthClientId(builder.Configuration["AzureAd:ClientId"]);
+        c.OAuthUseBasicAuthenticationWithAccessCodeGrant();
+        if (!builder.Environment.IsDevelopment())
+            c.RoutePrefix = String.Empty;
+    });
 }
 
 app.UseHttpsRedirection();
