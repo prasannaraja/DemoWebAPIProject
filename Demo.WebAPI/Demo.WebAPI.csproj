@@ -7,16 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Areas\" />
     <None Remove="Areas\WeatherForecast\" />
+    <None Remove="Areas\Account\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\" />
     <Folder Include="Areas\WeatherForecast\" />
+    <Folder Include="Areas\Account\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Demo.Service\Demo.Service.csproj">
